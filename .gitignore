@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.production
+
+# Turborepo cache
+.turbo/
+
+# Prisma generated client
+services/auth-service/node_modules/
+
+# OS files
+.DS_Store
+
+# Logs
+*.log
