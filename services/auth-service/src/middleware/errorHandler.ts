@@ -17,7 +17,7 @@ export function errorHandler(
   }
 
   // Unexpected error — log fully in development
-  console.error("💥  Unexpected error:", err);
+  console.error("  Unexpected error:", err);
 
   res.status(500).json({
     message: isDev ? err.message : "Something went wrong. Please try again.",

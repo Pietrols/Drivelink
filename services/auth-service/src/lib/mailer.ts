@@ -18,7 +18,8 @@ export async function sendEmail(opts: SendEmailOptions): Promise<void> {
     return;
   }
 
-  const sgMail = await import("@sendgrid/mail");
+  // Production: SendGrid
+  const sgMail = (await import("@sendgrid/mail" as string)) as any;
   sgMail.default.setApiKey(config.SENDGRID_API_KEY);
   await sgMail.default.send({
     to: opts.to,
