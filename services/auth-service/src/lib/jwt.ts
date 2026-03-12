@@ -1,7 +1,7 @@
 import jwt, { SignOptions } from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 import { config } from "../config";
-import { Role } from "@drivelink/types";
+import { Role } from "@lenda/types";
 
 export interface AccessTokenPayload {
   sub: string;

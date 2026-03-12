@@ -1,14 +1,8 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// @drivelink/types
-// Single source of truth for all TypeScript interfaces and enums.
-// Rule: if a data shape is used in more than one place, it lives here.
-// ─────────────────────────────────────────────────────────────────────────────
-
 // ── Enums ─────────────────────────────────────────────────────────────────────
 
 export enum Role {
-  CLIENT = "CLIENT",
-  DRIVER = "DRIVER",
+  GUEST = "GUEST",
+  HOST = "HOST",
   ADMIN = "ADMIN",
 }
 
@@ -23,6 +17,36 @@ export enum OtpType {
   PHONE = "PHONE",
 }
 
+export enum Pillar {
+  RENTAL = "RENTAL",
+  SERVICE = "SERVICE",
+}
+
+export enum ListingStatus {
+  PENDING_VERIFICATION = "PENDING_VERIFICATION",
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
+  SUSPENDED = "SUSPENDED",
+}
+
+export enum BookingStatus {
+  PENDING = "PENDING",
+  CONFIRMED = "CONFIRMED",
+  EN_ROUTE = "EN_ROUTE",
+  HANDED_OVER = "HANDED_OVER",
+  ACTIVE = "ACTIVE",
+  RETURN_PENDING = "RETURN_PENDING",
+  RETURNED = "RETURNED",
+  COMPLETED = "COMPLETED",
+  CANCELLED = "CANCELLED",
+  DISPUTED = "DISPUTED",
+}
+
+export enum HandoverType {
+  PICKUP = "PICKUP",
+  RETURN = "RETURN",
+}
+
 // ── User ──────────────────────────────────────────────────────────────────────
 
 export interface User {
@@ -34,18 +58,74 @@ export interface User {
   phoneVerified: boolean;
   kycStatus: KycStatus;
   isActive: boolean;
-  canDeliver: boolean;
-  deliveryRadiusKm: number | null;
   createdAt: Date;
   updatedAt: Date;
 }
 
-// ── Auth Request Payloads ─────────────────────────────────────────────────────
+// ── Listing ───────────────────────────────────────────────────────────────────
+
+export interface Listing {
+  id: string;
+  hostId: string;
+  pillar: Pillar;
+  category: string;
+  subcategory: string | null;
+  title: string;
+  description: string | null;
+  pricePerDay: number;
+  location: string;
+  status: ListingStatus;
+  metadata: Record<string, unknown>;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// ── Booking ───────────────────────────────────────────────────────────────────
+
+export interface Booking {
+  id: string;
+  guestId: string;
+  hostId: string;
+  listingId: string;
+  startDate: Date;
+  endDate: Date;
+  totalDays: number;
+  pricePerDay: number;
+  totalAmount: number;
+  status: BookingStatus;
+  pickupLocation: string | null;
+  notes: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface BookingStatusHistory {
+  id: string;
+  bookingId: string;
+  fromStatus: BookingStatus | null;
+  toStatus: BookingStatus;
+  changedById: string;
+  reason: string | null;
+  createdAt: Date;
+}
+
+export interface Handover {
+  id: string;
+  bookingId: string;
+  type: HandoverType;
+  guestConfirmed: boolean;
+  hostConfirmed: boolean;
+  guestConfirmedAt: Date | null;
+  hostConfirmedAt: Date | null;
+  createdAt: Date;
+}
+
+// ── Auth Payloads ─────────────────────────────────────────────────────────────
 
 export interface RegisterPayload {
   email: string;
-  phone?: string;
   password: string;
+  phone?: string;
   roles: Role[];
 }
 
@@ -68,7 +148,7 @@ export interface RefreshTokenPayload {
   refreshToken: string;
 }
 
-// ── Auth Response Payloads ────────────────────────────────────────────────────
+// ── Auth Responses ────────────────────────────────────────────────────────────
 
 export interface AuthTokens {
   accessToken: string;
@@ -85,10 +165,8 @@ export interface MessageResponse {
   message: string;
 }
 
-// ── API Error ─────────────────────────────────────────────────────────────────
-
 export interface ApiError {
   message: string;
-  code?: string;
+  code: string;
   errors?: Record<string, string[]>;
 }

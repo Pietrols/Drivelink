@@ -29,7 +29,7 @@ const envSchema = z.object({
   OTP_MAX_ATTEMPTS: z.coerce.number().default(5),
 
   SENDGRID_API_KEY: z.string().default(""),
-  EMAIL_FROM: z.string().default("noreply@drivelink.app"),
+  EMAIL_FROM: z.string().default("noreply@lenda.app"),
 
   CORS_ORIGINS: z.string().default("http://localhost:5173"),
 });

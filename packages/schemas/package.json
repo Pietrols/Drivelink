@@ -1,5 +1,5 @@
 {
-  "name": "@drivelink/schemas",
+  "name": "@lenda/schemas",
   "version": "0.0.1",
   "private": true,
   "main": "./dist/index.js",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "zod": "^3.22.0",
-    "@drivelink/types": "workspace:*"
+    "@lenda/types": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.4.0"

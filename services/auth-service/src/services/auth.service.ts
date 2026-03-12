@@ -20,7 +20,7 @@ import type {
   MessageResponse,
   Role,
   KycStatus,
-} from "@drivelink/types";
+} from "@lenda/types";
 
 // ── Register ──────────────────────────────────────────────────────────────────
 
@@ -43,7 +43,7 @@ export async function register(
       email: data.email,
       phone: data.phone ?? null,
       passwordHash,
-      roles: data.roles,
+      roles: data.roles as unknown as any,
     },
   });
 
@@ -175,8 +175,6 @@ export async function login(data: LoginPayload): Promise<AuthResponse> {
       phoneVerified: user.phoneVerified,
       kycStatus: user.kycStatus as unknown as KycStatus,
       isActive: user.isActive,
-      canDeliver: user.canDeliver,
-      deliveryRadiusKm: user.deliveryRadiusKm,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     },
@@ -238,8 +236,6 @@ export async function refreshTokens(token: string): Promise<AuthResponse> {
       phoneVerified: user.phoneVerified,
       kycStatus: user.kycStatus as unknown as KycStatus,
       isActive: user.isActive,
-      canDeliver: user.canDeliver,
-      deliveryRadiusKm: user.deliveryRadiusKm,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     },

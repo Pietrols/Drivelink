@@ -11,7 +11,7 @@ import {
   SendPhoneOtpSchema,
   LoginSchema,
   RefreshTokenSchema,
-} from "@drivelink/schemas";
+} from "@lenda/schemas";
 
 const router: Router = Router();
 

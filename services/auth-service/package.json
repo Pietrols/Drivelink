@@ -13,8 +13,8 @@
     "db:studio": "prisma studio"
   },
   "dependencies": {
-    "@drivelink/types": "workspace:*",
-    "@drivelink/schemas": "workspace:*",
+    "@lenda/types": "workspace:*",
+    "@lenda/schemas": "workspace:*",
     "@prisma/client": "^6.0.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

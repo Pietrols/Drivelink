@@ -1,5 +1,5 @@
 {
-  "name": "@drivelink/types",
+  "name": "@lenda/types",
   "version": "0.0.1",
   "private": true,
   "main": "./dist/index.js",

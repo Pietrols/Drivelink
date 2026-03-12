@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { verifyAccessToken, AccessTokenPayload } from "../lib/jwt";
 import { redis, redisKeys } from "../lib/redis";
-import { Role } from "@drivelink/types";
+import { Role } from "@lenda/types";
 
 // Extend Express Request type to include our user payload
 declare global {

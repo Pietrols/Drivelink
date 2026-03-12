@@ -20,7 +20,7 @@ importers:
 
   packages/schemas:
     dependencies:
-      '@drivelink/types':
+      '@lenda/types':
         specifier: workspace:*
         version: link:../types
       zod:
@@ -39,10 +39,10 @@ importers:
 
   services/auth-service:
     dependencies:
-      '@drivelink/schemas':
+      '@lenda/schemas':
         specifier: workspace:*
         version: link:../../packages/schemas
-      '@drivelink/types':
+      '@lenda/types':
         specifier: workspace:*
         version: link:../../packages/types
       '@prisma/client':

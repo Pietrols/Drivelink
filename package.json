@@ -1,5 +1,5 @@
 {
-  "name": "drivelink",
+  "name": "lenda",
   "private": true,
   "scripts": {
     "dev:auth": "turbo run dev --filter=auth-service",
