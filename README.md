@@ -6,7 +6,7 @@ A peer-to-peer car hire platform connecting drivers who own vehicles with client
 
 ## Project Status
 
-**Phase 1 — Auth Service: Complete**
+**Phase 1 - Auth Service: Complete**
 
 The authentication service is fully built, tested, and running. Registration, email verification, login, token refresh, protected routes, and logout are all working end to end.
 
@@ -79,11 +79,11 @@ drivelink/
 
 ### Token Strategy
 
-**Access Token** — JWT, signed with `JWT_ACCESS_SECRET`, expires in 15 minutes. Stateless — verified by signature alone. Carries user ID, roles, and a unique `jti` for blacklisting.
+**Access Token** - JWT, signed with `JWT_ACCESS_SECRET`, expires in 15 minutes. Stateless - verified by signature alone. Carries user ID, roles, and a unique `jti` for blacklisting.
 
-**Refresh Token** — JWT, signed with `JWT_REFRESH_SECRET`, expires in 7 days. Stored in Redis. Rotated on every use — old token is deleted immediately, new token issued. Revoked on logout.
+**Refresh Token** - JWT, signed with `JWT_REFRESH_SECRET`, expires in 7 days. Stored in Redis. Rotated on every use — old token is deleted immediately, new token issued. Revoked on logout.
 
-**OTPs** — 6-digit codes stored in Redis with a 10 minute TTL and a maximum of 5 attempts. Deleted on successful verification.
+**OTPs** - 6-digit codes stored in Redis with a 10 minute TTL and a maximum of 5 attempts. Deleted on successful verification.
 
 ### Auth Service File Structure
 
@@ -126,11 +126,11 @@ services/auth-service/
 
 TypeScript interfaces and enums shared across all services and apps.
 
-- `Role` enum — CLIENT, DRIVER, ADMIN
-- `KycStatus` enum — PENDING, APPROVED, REJECTED
+- `Role` enum - CLIENT, DRIVER, ADMIN
+- `KycStatus` enum - PENDING, APPROVED, REJECTED
 - `OtpType` enum
 - `User`, `AuthTokens`, `AuthResponse`, `ApiError` interfaces
-- Request payload types — `RegisterPayload`, `LoginPayload`, etc.
+- Request payload types - `RegisterPayload`, `LoginPayload`, etc.
 
 ### `@drivelink/schemas`
 
@@ -248,17 +248,17 @@ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 
 ## Upcoming — Phase 1 Remaining
 
-- Booking service — vehicle listings, bookings, dual-confirm handover
-- Web app — React frontend matching the DriveLink design system
-- Mobile app — React Native (iOS and Android)
+- Booking service — vehicle listings, bookings, dual-confirm handover.
+- Web app — React frontend matching the DriveLink design system.
+- Mobile app — React Native (iOS and Android).
 
 ---
 
 ## Design Decisions
 
-**Express over other frameworks** — chosen for language unification (full TypeScript stack), real-time suitability, and ecosystem fit.
+**Express over other frameworks** - chosen for language unification (full TypeScript stack), real-time suitability, and ecosystem fit.
 
-**Prisma 6** — pinned to version 6 to avoid breaking changes in version 7.
+**Prisma 6** - pinned to version 6 to avoid breaking changes in version 7.
 
 **No transporter role** — vehicle handover is handled directly between driver and client via consent-based location sharing and in-app booking chat.
 
